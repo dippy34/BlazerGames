@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blazer - Bookmarklet Hacks</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+</head>
+<body data-page="bookmarklets">
+    <nav>
+        <div class="nav-left">
+            <a class="nav-brand" href="index.html" aria-label="Blazer home">
+                <img src="images/logo.png" alt="logo">
+            </a>
+            <h1>BLAZER</h1>
+        </div>
+        <div class="nav-right">
+            <a class="nav-link" href="index.html">Games</a>
+            <a class="nav-link active" href="bookmarklets.html">Bookmarklets</a>
+        </div>
+    </nav>
+
+    <div class="content bm-page">
+        <div class="bm-hero">
+            <h2>Bookmarklet Hacks</h2>
+            <p>
+                Copy one of these “bookmarklet URLs” into a new bookmark’s URL field, or hit <b>Run</b> to try it instantly.
+                Only run bookmarklets on pages you trust.
+            </p>
+            <div class="bm-note">
+                The first item is a <b>safe stress test</b> (not an actual device-crasher): it auto-stops and has a big Stop button.
+            </div>
+        </div>
+
+        <div id="bookmarklets" class="bm-grid"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
