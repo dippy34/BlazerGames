@@ -3,12 +3,22 @@ import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import { fileURLToPath } from "node:url";
 import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
+import { createRequire } from "node:module";
 
 import { scramjetPath } from "@mercuryworkshop/scramjet/path";
 import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 
+const require = createRequire(import.meta.url);
+const { createBareServer } = require("@nebula-services/bare-server-node");
+const { bareModulePath } = require("@mercuryworkshop/bare-as-module3");
+
 const siteRoot = fileURLToPath(new URL("../", import.meta.url));
+
+const bare = createBareServer("/proxy/bare/", {
+	logErrors: true,
+	blockLocal: false,
+});
 
 // Wisp Configuration: https://www.npmjs.com/package/@mercuryworkshop/wisp-js
 // Keep logs quiet by default, but don't fully silence warnings/errors in prod.
@@ -30,9 +40,20 @@ const fastify = Fastify({
 					res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
 					res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
 				}
+
+				if (bare.shouldRoute(req)) {
+					bare.routeRequest(req, res);
+					return;
+				}
+
 				handler(req, res);
 			})
 			.on("upgrade", (req, socket, head) => {
+				if (bare.shouldRoute(req)) {
+					bare.routeUpgrade(req, socket, head);
+					return;
+				}
+
 				const rawUrl = req.url || "";
 				const pathname = rawUrl.split("?")[0];
 
@@ -73,6 +94,13 @@ fastify.register(fastifyStatic, {
 fastify.register(fastifyStatic, {
 	root: baremuxPath,
 	prefix: "/proxy/baremux/",
+	decorateReply: false,
+});
+
+// Bare transport module for bare-mux (client-side)
+fastify.register(fastifyStatic, {
+	root: bareModulePath,
+	prefix: "/proxy/baremod/",
 	decorateReply: false,
 });
 
