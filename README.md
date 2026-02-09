@@ -3,6 +3,19 @@
 *Subscribe to Blazer!!!*
 https://youtube.com/c/blazerhm
 
+## Proxy
+
+This repo now includes a Scramjet-based proxy page at `/proxy/`.
+
+### Run locally
+
+```sh
+npm install
+npm start
+```
+
+Then open `http://localhost:8080/proxy/`.
+
 ## Deployment
 Here are some other deployment options to deploy the site on your own.
 

@@ -37,6 +37,30 @@ nav h1 {
     margin-right: 1%;
 }
 
+nav .nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+}
+
+nav .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.6vw;
+    padding: 0.55vw 1vw;
+    border-radius: 1vw;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: .2s all ease;
+    user-select: none;
+}
+
+nav .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
 .content {
     flex-direction: column;
     align-items: left;
