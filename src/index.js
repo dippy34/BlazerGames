@@ -29,8 +29,19 @@ const fastify = Fastify({
 				handler(req, res);
 			})
 			.on("upgrade", (req, socket, head) => {
-				if (req.url?.endsWith("/proxy/wisp/")) wisp.routeRequest(req, socket, head);
-				else socket.end();
+				const rawUrl = req.url || "";
+				const pathname = rawUrl.split("?")[0];
+
+				// Be lenient here: some reverse proxies strip trailing slashes or add
+				// query params. Wisp *requires* a trailing slash to be treated as a Wisp
+				// endpoint (otherwise it becomes wsproxy).
+				if (pathname === "/proxy/wisp" || pathname.startsWith("/proxy/wisp/")) {
+					if (!pathname.endsWith("/")) req.url = pathname + "/";
+					wisp.routeRequest(req, socket, head);
+					return;
+				}
+
+				socket.end();
 			});
 	},
 });
