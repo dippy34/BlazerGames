@@ -11,9 +11,13 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 const siteRoot = fileURLToPath(new URL("../", import.meta.url));
 
 // Wisp Configuration: https://www.npmjs.com/package/@mercuryworkshop/wisp-js
-logging.set_level(logging.NONE);
+// Keep logs quiet by default, but don't fully silence warnings/errors in prod.
+logging.set_level(process.env.WISP_LOG === "1" ? logging.INFO : logging.WARN);
 Object.assign(wisp.options, {
 	allow_udp_streams: false,
+	// Render (and many Node hosts) often lack reliable IPv6 egress.
+	// Prefer IPv4 to avoid connection failures (curl error 7).
+	dns_result_order: "ipv4first",
 });
 
 const fastify = Fastify({
