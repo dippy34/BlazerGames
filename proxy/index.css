@@ -1,0 +1,130 @@
+:root {
+	color-scheme: dark;
+	--bg: #0b0b0f;
+	--panel: #14141b;
+	--text: #eaeaf2;
+	--muted: #a6a6b8;
+	--border: #2a2a35;
+	--accent: #4c8bf5;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+		"Apple Color Emoji", "Segoe UI Emoji";
+	background: radial-gradient(1200px 800px at 25% 0%, #151527 0%, var(--bg) 60%);
+	color: var(--text);
+}
+
+.topbar {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.9rem 1.1rem;
+	border-bottom: 1px solid var(--border);
+	background: rgba(20, 20, 27, 0.7);
+	backdrop-filter: blur(10px);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.brand {
+	color: var(--text);
+	text-decoration: none;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.sep,
+.page {
+	color: var(--muted);
+}
+
+.container {
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 1.25rem;
+}
+
+h1 {
+	font-size: 2rem;
+	margin: 0.25rem 0 0.5rem;
+}
+
+.sub {
+	color: var(--muted);
+	margin: 0 0 1rem;
+}
+
+.bar {
+	display: flex;
+	gap: 0.6rem;
+	padding: 0.75rem;
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	background: rgba(20, 20, 27, 0.75);
+}
+
+.bar input[type="text"] {
+	flex: 1;
+	min-width: 0;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 0.8rem 0.9rem;
+	background: #0f0f16;
+	color: var(--text);
+	outline: none;
+}
+
+.bar input[type="text"]:focus {
+	border-color: rgba(76, 139, 245, 0.7);
+	box-shadow: 0 0 0 4px rgba(76, 139, 245, 0.15);
+}
+
+.bar button {
+	border: 1px solid rgba(76, 139, 245, 0.65);
+	background: rgba(76, 139, 245, 0.12);
+	color: var(--text);
+	padding: 0.8rem 1rem;
+	border-radius: 12px;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.bar button:hover {
+	background: rgba(76, 139, 245, 0.18);
+}
+
+.errors {
+	margin-top: 0.75rem;
+}
+
+#sj-error {
+	color: #ffb4b4;
+	margin: 0.5rem 0 0.25rem;
+}
+
+#sj-error-code {
+	color: var(--muted);
+	margin: 0;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+#sj-frame {
+	width: 100%;
+	height: calc(100vh - 340px);
+	min-height: 520px;
+	margin-top: 1rem;
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	background: #000;
+}
+

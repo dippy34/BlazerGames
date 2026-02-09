@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+		/>
+		<title>Proxy</title>
+
+		<link rel="stylesheet" href="./index.css" />
+
+		<script src="/proxy/scram/scramjet.all.js"></script>
+		<script src="/proxy/baremux/index.js"></script>
+
+		<script src="./register-sw.js" defer></script>
+		<script src="./search.js" defer></script>
+		<script src="./index.js" defer></script>
+	</head>
+	<body>
+		<nav class="topbar">
+			<a class="brand" href="/">Blazer</a>
+			<span class="sep">/</span>
+			<span class="page">Proxy</span>
+		</nav>
+
+		<main class="container">
+			<h1>Proxy</h1>
+			<p class="sub">
+				Enter a URL (or search). A Scramjet frame will open below.
+			</p>
+
+			<form id="sj-form" class="bar">
+				<input
+					id="sj-search-engine"
+					value="https://www.google.com/search?q=%s"
+					type="hidden"
+				/>
+				<input
+					id="sj-address"
+					type="text"
+					placeholder="https://example.com or search terms"
+					autocomplete="off"
+					autocapitalize="off"
+					autocorrect="off"
+					spellcheck="false"
+				/>
+				<button type="submit">Go</button>
+			</form>
+
+			<div class="errors">
+				<p id="sj-error"></p>
+				<pre id="sj-error-code"></pre>
+			</div>
+
+			<div id="frame-root"></div>
+		</main>
+	</body>
+</html>
+
