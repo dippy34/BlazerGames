@@ -1,0 +1,10 @@
+{
+  "name": "blazer-npm-shim",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "Npm": "./bin/Npm.js"
+  }
+}
+

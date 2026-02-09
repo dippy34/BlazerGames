@@ -2,6 +2,9 @@
   "name": "blazergames",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "node src/index.js"
@@ -12,6 +15,7 @@
     "@mercuryworkshop/libcurl-transport": "^1.5.2",
     "@mercuryworkshop/scramjet": "https://github.com/MercuryWorkshop/scramjet/releases/download/latest/mercuryworkshop-scramjet-2.0.0-alpha.tgz",
     "@mercuryworkshop/wisp-js": "^0.4.1",
+    "blazer-npm-shim": "file:tools/npm-shim",
     "fastify": "^5.4.0",
     "ws": "^8.18.3"
   }
